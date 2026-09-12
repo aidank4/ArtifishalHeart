@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "name": "InputActionsMap",
+    "maps": [
+        {
+            "name": "Dialogue",
+            "id": "884c49d8-2477-44e0-b9e7-808b342f4936",
+            "actions": [
+                {
+                    "name": "SkipDialogue",
+                    "type": "Button",
+                    "id": "dba8771e-0d74-4c13-a80d-00da6e235e79",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8eda9669-e57a-49b6-bfcc-dce616e940ce",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
