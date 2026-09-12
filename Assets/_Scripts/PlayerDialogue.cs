@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerDialogue : MonoBehaviour
@@ -24,6 +25,12 @@ public class PlayerDialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textOptionD;
 
     private DialogueController _dialogueControllerScript;
+
+    public bool choiceSelected = false;
+
+
+    //this variable is accessed by dialogue script to use button text as response text
+    public TMP_Text buttonText;
 
     private void Awake()
     {
@@ -53,5 +60,21 @@ public class PlayerDialogue : MonoBehaviour
                 Debug.Log("out of dates");
                 break;
         }
+    }
+
+
+    public void ChoiceSelection()
+    {
+        //these bools control what the next line text is
+        _dialogueControllerScript.playerDialogue = false;
+        choiceSelected = true;
+
+        GameObject button = EventSystem.current.currentSelectedGameObject;
+        buttonText = button.GetComponentInChildren<TMP_Text>();
+        Debug.Log(buttonText.text);
+
+
+        //Start text again
+        _dialogueControllerScript.NextLine();
     }
 }

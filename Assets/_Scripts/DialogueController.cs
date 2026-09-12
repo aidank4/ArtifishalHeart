@@ -38,11 +38,11 @@ public class DialogueController : MonoBehaviour
 
     
     [SerializeField] private float _typeSpeed = 0.05f;
-    private int _index;
+    [SerializeField] private int _index;
 
     public int dateNum = 1;
 
-    [SerializeField]private bool _playerDialogue = false;
+    public bool playerDialogue = false;
 
 
     private void Awake()
@@ -55,26 +55,28 @@ public class DialogueController : MonoBehaviour
         _playerDialogueScript.optionsBox.gameObject.SetActive(false);
 
         _textLover.text = string.Empty;
+        _index = 0; // might need to change this to into switch
         StartDialogue();
     }
 
     private void StartDialogue()
     {
-        switch (dateNum)
+        //Maybe helpful down the line if _index does not save or glitches or something
+        /*switch (dateNum)
         {
             case 1:
                 _index = 0;
                 break;
-            //case 2:
-                //_index = 10;
-                //break;
-            //case 3:
-                //_index = 25;
-                //break; and so on
+            case 2:
+                _index = 10;
+                break;
+            case 3:
+                _index = 25;
+                break;
             default:
                 _index = 0;
                 break;
-        }
+        }*/
 
         StartCoroutine(TypeLine());
     }
@@ -97,20 +99,20 @@ public class DialogueController : MonoBehaviour
         {
             Debug.Log("question");
             //time for player to choose response
-            _playerDialogue = true;
+            playerDialogue = true;
         }
     }
 
-    private void NextLine()
+    public void NextLine()
     {
-        if (_index < dialogueLines.Length - 1 && !_playerDialogue) // if its a question dont type line
+        if (_index < dialogueLines.Length - 1 && !playerDialogue && !_playerDialogueScript.choiceSelected) // if its a question or a choice has been selecteddont type line
         {
             _index++;
             _textLover.text = string.Empty;
             StartCoroutine(TypeLine());
         }
 
-        if (_playerDialogue)
+        if (playerDialogue)
         {
             //reconfigure UI
             _dialogueBox.gameObject.SetActive(false);
@@ -118,6 +120,31 @@ public class DialogueController : MonoBehaviour
             _playerDialogueScript.UpdateOptions();
 
         }
+
+        //Update text to reflect choice
+        if (_playerDialogueScript.choiceSelected == true)
+        {
+            _playerDialogueScript.choiceSelected = false; // reset this bool
+            //Set text to response
+            _index++;
+            _textLover.text = string.Empty;
+            dialogueLines[_index].text = _playerDialogueScript.buttonText.text; // befure UI incase it going inactive matters
+
+            //reconfigure UI
+            _dialogueBox.gameObject.SetActive(true);
+            _playerDialogueScript.optionsBox.gameObject.SetActive(false);
+
+            StartCoroutine(TypeLine());
+        }
+
+        if (dialogueLines[_index].finishesDate)
+        {
+            //close UI
+            //dateNum +=1;
+
+            ///When player reopens date scene, StartDialogue needs to be called
+        }
+
     }
 
 
@@ -142,7 +169,13 @@ public class DialogueController : MonoBehaviour
                 {
                     Debug.Log("question");
                     //time for player to choose response
-                    _playerDialogue = true;
+                    playerDialogue = true;
+                }
+
+                //Check for end of conversation
+                if (dialogueLines[_index].finishesDate)
+                {
+
                 }
             }
         }
