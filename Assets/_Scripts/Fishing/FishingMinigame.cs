@@ -1,12 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;       
 
 public class FishingMinigame : MonoBehaviour
 {
+    public Fish fish;
+
+    [Header("Audio Variables")]
+    public float reelingDonePitch = 1.3f;
+    public float reelingPitch = 0.7f;
+    public float losingPitch = 1.1f;
+
     [Header("Reel-in Variables")]
+    public float fishMoveSpeed = 0.6f;
     public float reelInFishSpeed = 0.2f;
     public float loseFishSpeed = 0.5f;
     public float mouseDistanceToFishToCount = 50f;
+    public float endingDelay = 0.3f;
+    public float endingPopupDuration = 1f;
+    public float catchAnimationDuration = 0.4f;
+    public float mouseVisualSizeChangeSpeed = 2f;
+    public float mouseLocalScaleOnFish = 0.45f;
+    public float originalMouseLocalScale = 0.7f;
     public Color mouseColorReeling;
     public Color mouseColorLosing;
 
@@ -23,6 +38,9 @@ public class FishingMinigame : MonoBehaviour
     public Transform fishingLineVisual;
     public Transform mouseVisual;
     public SpriteRenderer mouseSprite;
+    public SpriteRenderer fishSprite;
+    public AudioSource audioSource;
+    public GameObject fishCaughtPopup;
 
     [Header("Debug")]
     public float minigameCompletion = 0.5f;
@@ -30,9 +48,14 @@ public class FishingMinigame : MonoBehaviour
     public Vector2 currentMousePosition;
     public Vector2 currentMouseVelocity;
     public Vector2 mouseDelta;
+    public bool reelingInFish;
+    public bool startedFishingEnd;
 
     private void Start()
     {
+        audioSource.Play();
+        fishCaughtPopup.SetActive(false);
+
         HideCursor();
 
         var randomStartingPosition = new Vector2(
@@ -42,25 +65,44 @@ public class FishingMinigame : MonoBehaviour
 
         currentFishPosition = randomStartingPosition;
         currentMousePosition = randomStartingPosition;
+
+        fishSprite.sprite = fish.sprite;
+        fishSprite.color = fish.color;
     }
 
     private void Update()
     {
-        MoveFish_PerlinNoise();
+        if(minigameCompletion < 1f) 
+        {
+            MoveFish_PerlinNoise();
         
-        MoveMouse();
+            MoveMouse();
 
-        RotateHookVisual();
-        
-        RotateFishingLineVisual();
+            RotateHookVisual();
+            
+            RotateFishingLineVisual();
 
-        // Reel in fish if mouse is close enough
-        bool reelingInFish = Vector2.Distance(currentMousePosition, currentFishPosition) < mouseDistanceToFishToCount;
-        float minigameCompletionSpeed = reelingInFish ? reelInFishSpeed : -loseFishSpeed;
-        minigameCompletion += minigameCompletionSpeed * Time.deltaTime;
-        minigameCompletion = Mathf.Clamp01(minigameCompletion);
+            // Reel in fish if mouse is close enough
+            reelingInFish = Vector2.Distance(currentMousePosition, currentFishPosition) < mouseDistanceToFishToCount;
+            float minigameCompletionSpeed = reelingInFish ? reelInFishSpeed : -loseFishSpeed;
+            minigameCompletion += minigameCompletionSpeed * Time.deltaTime;
+            minigameCompletion = Mathf.Clamp01(minigameCompletion);
 
-        mouseSprite.color = reelingInFish ? mouseColorReeling : mouseColorLosing;
+            mouseSprite.color = reelingInFish ? mouseColorReeling : mouseColorLosing;
+
+            audioSource.pitch = reelingInFish ? reelingPitch : losingPitch;
+
+            Vector3 targetMouseSize = (reelingInFish ? mouseLocalScaleOnFish :  originalMouseLocalScale) * Vector3.one;
+            mouseVisual.localScale = Vector3.Lerp(mouseVisual.localScale, targetMouseSize, Time.deltaTime * mouseVisualSizeChangeSpeed);
+        }
+        else
+        {
+            if(!startedFishingEnd)
+            {
+                startedFishingEnd = true;
+                StartCoroutine(FishCaught_cr());
+            }
+        }
     }
 
     void HideCursor()
@@ -110,11 +152,44 @@ public class FishingMinigame : MonoBehaviour
     void MoveFish_PerlinNoise()
     {
         // 2 random noise values changing over time, mapped to the range: (-1, 1)
-        float noiseX = (Mathf.PerlinNoise(Time.time, 2242.457678f) * 2f) - 1f;
-        float noiseY = (Mathf.PerlinNoise(Time.time + 4444.879432f, 9999.512321f) * 2) - 1f;
+        float noiseX = (Mathf.PerlinNoise((Time.time * fishMoveSpeed), 2242.457678f) * 2f) - 1f;
+        float noiseY = (Mathf.PerlinNoise((Time.time * fishMoveSpeed) + 4444.879432f, 9999.512321f) * 2) - 1f;
 
         currentFishPosition = new Vector2(noiseX * maxOffset.x, noiseY * maxOffset.y);
 
         fishParent.localPosition = currentFishPosition;
+    }
+
+    IEnumerator FishCaught_cr()
+    {
+        audioSource.Stop();
+
+        fishCaughtPopup.SetActive(true);
+
+        yield return new WaitForSeconds(endingDelay);
+
+        audioSource.pitch = reelingDonePitch;
+        audioSource.Play();
+
+        float timeElapsed = 0f;
+
+        Vector3 start = currentFishPosition;
+        Vector3 end = fishingLineOrigin.position;
+
+        while(timeElapsed < catchAnimationDuration)
+        {
+            float completion = timeElapsed / catchAnimationDuration;
+            currentFishPosition = Vector3.Lerp(start, end, completion);
+            fishParent.localPosition = currentFishPosition;
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.Stop();
+
+        yield return new WaitForSeconds(endingPopupDuration);
+
+        fishCaughtPopup.SetActive(false);
     }
 }
