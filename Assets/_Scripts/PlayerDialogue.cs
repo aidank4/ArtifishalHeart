@@ -42,7 +42,7 @@ public class PlayerDialogue : MonoBehaviour
     //Set options text to whatever is in the options array per each date
     public void UpdateOptions()
     {
-        switch (_dialogueControllerScript.dateNum)
+        switch (DialogueController.dayNum)
         {
             case 1:
                 _textOptionA.text = optionsChoiceOne[0].text;

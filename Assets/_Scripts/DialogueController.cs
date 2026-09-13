@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
@@ -47,16 +48,21 @@ public class DialogueController : MonoBehaviour
     
     [SerializeField] private float _typeSpeed = 0.05f;
 
-    private int _index;
-    private int _choiceIndex;
+    private int _index = 0;
+    private int _choiceIndex = 0;
+    private int _fishIndex = 0;
 
 
-    public int dateNum = 1;
+    public static int dayNum = 1;
+    public static int score = 0;
 
     public bool playerDialogue = false;
 
     private bool _dateOver = false;
+    public bool fishTime = false;
 
+
+    public Fish datingFish;
 
     private void Awake()
     {
@@ -68,17 +74,21 @@ public class DialogueController : MonoBehaviour
         _playerDialogueScript.optionsBox.gameObject.SetActive(false);
 
         _textLover.text = string.Empty;
-        _index = 0; // might need to change this to into switch
+
+        if (FishingResults.currentFishHeld != null)
+            datingFish = FishingResults.currentFishHeld;
+
         StartDialogue();
     }
 
     private void StartDialogue()
     {
-        //Maybe helpful down the line if _index does not save or glitches or something
-        /*switch (dateNum)
+        switch (dayNum)
         {
             case 1:
                 _index = 0;
+                _fishIndex = 0;
+                _choiceIndex = 0;
                 break;
             case 2:
                 _index = 10;
@@ -87,9 +97,9 @@ public class DialogueController : MonoBehaviour
                 _index = 25;
                 break;
             default:
-                _index = 0;
+                _index = 1;
                 break;
-        }*/
+        }
 
         StartCoroutine(TypeLine());
     }
@@ -118,11 +128,15 @@ public class DialogueController : MonoBehaviour
         {
             _dateOver = true;
         }
+        if (dialogueLines[_index].fish)
+        {
+            fishTime = true;
+        }
     }
 
     public void NextLine()
     {
-        if (_index < dialogueLines.Length - 1 && !playerDialogue && !_playerDialogueScript.choiceSelected) // if its a question or a choice has been selecteddont type line
+        if (_index < dialogueLines.Length - 1 && !playerDialogue && !_playerDialogueScript.choiceSelected && !fishTime) // if its a question or a choice has been selecteddont type line
         {
             _index++;
             _textLover.text = string.Empty;
@@ -142,10 +156,29 @@ public class DialogueController : MonoBehaviour
         {
             _dateOver = false;
             this.gameObject.SetActive(false);
-            //close UI
-            //dateNum +=1;
+            //CHANGE SCENE
+            SceneManager.LoadScene("GameScene");
+            dayNum++; //increment dayNum
+        }
 
-            ///When player reopens date scene, StartDialogue needs to be called
+        if (fishTime)
+        {
+            Debug.Log("FishTime");
+            _index++;
+            _textLover.text = string.Empty;
+            fishTime = false;
+            if (datingFish.liked)
+            {
+                dialogueLines[_index].text = fishResponsesGood[_fishIndex];
+                _fishIndex++;
+            }
+            if (!datingFish.liked)
+            {
+                dialogueLines[_index].text = fishResponsesBad[_fishIndex];
+                _fishIndex++;
+            }
+
+            StartCoroutine(TypeLine());
         }
 
         //Update text to reflect choice
@@ -174,20 +207,6 @@ public class DialogueController : MonoBehaviour
             _playerDialogueScript.optionsBox.gameObject.SetActive(false);
 
             StartCoroutine(TypeLine());
-        }
-
-        if (dialogueLines[_index].fish)
-        {
-            /*if (FishManager.Fish.like == true)
-            {
-                _index++;
-            _textLover.text = string.Empty;
-            dialogueLines[_index].text =
-
-            }
-            _index++;
-            _textLover.text = string.Empty;
-            dialogueLines[_index].text = */
         }
 
 
@@ -223,6 +242,10 @@ public class DialogueController : MonoBehaviour
                 if (dialogueLines[_index].finishesDate)
                 {
                     _dateOver = true;
+                }
+                if (dialogueLines[_index].fish)
+                {
+                    fishTime = true;
                 }
             }
         }

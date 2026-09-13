@@ -1867,6 +1867,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: dba8771e-0d74-4c13-a80d-00da6e235e79
     m_ActionName: 'Dialogue/SkipDialogue[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 825b79bd-7eb0-4139-ad53-f67596072bf0
+    m_ActionName: 'Movement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: daa983cb-c7b6-4ead-a030-b90285a061a2
+    m_ActionName: 'Movement/Interact[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Dialogue
@@ -1904,7 +1912,7 @@ MonoBehaviour:
   - text: Datem, I brought you a fish!
     question: 0
     player: 1
-    fish: 0
+    fish: 1
     finishesDate: 0
   - text: Yaay thanks
     question: 0
@@ -1968,9 +1976,10 @@ MonoBehaviour:
   _playerSprite: {fileID: 1157004683}
   _loverSprite: {fileID: 639933845}
   _typeSpeed: 0.05
-  _index: 0
   dateNum: 1
   playerDialogue: 0
+  fishTime: 0
+  datingFish: {fileID: 11400000, guid: 00ff841bfc6b3f6418824c85afbf6f57, type: 2}
 --- !u!114 &1686708734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,22 +1992,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18f64b98884f874fa7c2ef24083edcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDialogue
-  optionsDateOne:
-  - text: duh
-    goodResponse: 0
-  - text: it reminded me of you
+  optionsChoiceOne:
+  - text: The correct response
     goodResponse: 1
-  - text: yes
+  - text: bad response
     goodResponse: 0
-  - text: i wish i was a salmon
+  - text: pointless
+    goodResponse: 0
+  - text: woooooo
     goodResponse: 1
-  optionsDateTwo: []
+  optionsChoiceTwo: []
   optionsBox: {fileID: 1466881922}
   _textOptionA: {fileID: 1105951715}
   _textOptionB: {fileID: 1652949460}
   _textOptionC: {fileID: 177556671}
   _textOptionD: {fileID: 1694300255}
   choiceSelected: 0
+  likedChoice: 0
   buttonText: {fileID: 0}
 --- !u!1 &1694300254
 GameObject:
