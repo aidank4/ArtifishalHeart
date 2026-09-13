@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 855449335}
   - component: {fileID: 855449334}
   m_Layer: 5
-  m_Name: Scrollbar
+  m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1115,11 +1115,11 @@ RectTransform:
   - {fileID: 1810989904}
   m_Father: {fileID: 758729335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -801, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 45, y: 27}
   m_SizeDelta: {x: 261, y: 222.6}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &855449334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,9 +1162,9 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1275503270}
   m_HandleRect: {fileID: 1275503269}
-  m_Direction: 0
+  m_Direction: 2
   m_Value: 0
-  m_Size: 0.2
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1189,8 +1189,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b67e2370878d72549af9f50ed6d90b27, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1291,8 +1291,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 73.4
-  m_fontSizeBase: 73.4
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1589,8 +1589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275503270
 MonoBehaviour:
@@ -1612,12 +1612,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 311cfd058c8fd0e4390201c637ba45eb, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 58fbb73f127551842ba698c8762275a2, type: 3}
+  m_Texture: {fileID: 2800000, guid: ead1329264a4d0f48bd3386a96bacdea, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2553,6 +2553,10 @@ MonoBehaviour:
   _loverSprite: {fileID: 639933845}
   _backgroundSprite: {fileID: 1286703437}
   _dateStartImage: {fileID: 1887982952}
+  _emptyHeart: {fileID: 855449334}
+  _happy: {fileID: 2800000, guid: 58fbb73f127551842ba698c8762275a2, type: 3}
+  _mad: {fileID: 2800000, guid: f70f2264a2dabe64b882f480ad729d6d, type: 3}
+  _nuetral: {fileID: 2800000, guid: ead1329264a4d0f48bd3386a96bacdea, type: 3}
   _typeSpeed: 0.05
   _index: 0
   playerDialogue: 0
@@ -2867,7 +2871,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1850987450
 GameObject:

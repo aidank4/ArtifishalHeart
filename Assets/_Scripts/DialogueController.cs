@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection.Metadata;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,8 +47,13 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private RawImage _loverSprite;
     [SerializeField] private RawImage _backgroundSprite;
     [SerializeField] private RawImage _dateStartImage;
-
+    [SerializeField] private Scrollbar _emptyHeart;
     
+
+    [SerializeField] private Texture _happy;
+    [SerializeField] private Texture _mad;
+    [SerializeField] private Texture _nuetral;
+
     [SerializeField] private float _typeSpeed = 0.05f;
 
     [SerializeField] private int _index = 0;
@@ -56,12 +62,13 @@ public class DialogueController : MonoBehaviour
 
 
     public static int dayNum = 1;
-    public static int score = 0;
+    public static float score = 0;
 
     public bool playerDialogue = false;
 
     private bool _dateOver = false;
     private bool _dateStarted = false;
+    private bool _dateEnded = false;
     public bool fishTime = false;
 
 
@@ -83,6 +90,16 @@ public class DialogueController : MonoBehaviour
 
         if (FishingResults.currentFishHeld != null)
             datingFish = FishingResults.currentFishHeld;
+
+        //Set up heart fill
+        Image fillHeart = _emptyHeart.handleRect.GetComponent<Image>();
+        if (fillHeart != null)
+        {
+            Debug.Log("Filling");
+            fillHeart.type = Image.Type.Filled;
+            fillHeart.fillAmount += (score / 5f);
+        }
+
 
         StartDialogue();
     }
@@ -152,6 +169,10 @@ public class DialogueController : MonoBehaviour
 
     public void NextLine()
     {
+        //Reset face
+        _backgroundSprite.texture = _nuetral;
+
+
         if (_index < dialogueLines.Length - 1 && !playerDialogue && !_playerDialogueScript.choiceSelected && !fishTime) // if its a question or a choice has been selecteddont type line
         {
             _index++;
@@ -172,16 +193,20 @@ public class DialogueController : MonoBehaviour
         {
             if (dayNum == 3)
             {
-                //SceneManager.LoadScene("EndScene");
-                //end scene will check if score meets a threshold for which background it shows
+                //reset dayNum for replay
+                dayNum = 0;
+                if (score >= 5)
+                {
+                    //SceneManager.LoadScene("WinScene");
+                }
+                else
+                {
+                    //SceneManager.LoadScene("LoseScene");
+                }
             }
             else
             {
-                _dateOver = false;
-                this.gameObject.SetActive(false);
-                //CHANGE SCENE
-                SceneManager.LoadScene("GameScene");
-                dayNum++; //increment dayNum
+                StartCoroutine(DateOutro());
             }
 
         }
@@ -194,11 +219,17 @@ public class DialogueController : MonoBehaviour
             fishTime = false;
             if (datingFish.liked)
             {
+                //more in love
+                score++;
+                UpdateHeart();
+
+                _backgroundSprite.texture = _happy;
                 dialogueLines[_index].text = fishResponsesGood[_fishIndex];
                 _fishIndex++;
             }
             if (!datingFish.liked)
             {
+                _backgroundSprite.texture = _mad;
                 dialogueLines[_index].text = fishResponsesBad[_fishIndex];
                 _fishIndex++;
             }
@@ -218,11 +249,15 @@ public class DialogueController : MonoBehaviour
             //Configure following Line to be dynamic response
             if (_playerDialogueScript.likedChoice)
             {
+                score++;
+                UpdateHeart();
+                _backgroundSprite.texture = _happy;
                 dialogueLines[_index + 1].text = choiceResponsesGood[_choiceIndex];
                 _choiceIndex++;
             }
             else if (!_playerDialogueScript.likedChoice)
             {
+                _backgroundSprite.texture = _mad;
                 dialogueLines[_index + 1].text = choiceResponsesBad[_choiceIndex];
                 _choiceIndex++;
             }
@@ -240,7 +275,7 @@ public class DialogueController : MonoBehaviour
 
     public void SkipLine(InputAction.CallbackContext context)
     {
-        if (context.performed && _dateStarted)
+        if (context.performed && _dateStarted && !_dateEnded)
         {
 
             if (_textLover.text == dialogueLines[_index].text)
@@ -317,10 +352,44 @@ public class DialogueController : MonoBehaviour
         _dialogueBox.gameObject.SetActive(true);
         StartCoroutine(TypeLine());
         _dateStarted = true;
+        _dateEnded = false;
     }
 
+    IEnumerator DateOutro()
+    {
 
+        _dateEnded = true;
 
+        _dateStartImage.gameObject.SetActive(true);
+        _dialogueBox.gameObject.SetActive(false);
+
+        TMP_Text outroText = _dateStartImage.GetComponentInChildren<TMP_Text>();
+        outroText.text = string.Empty;
+        string endText = "I bet Datem would love another fish...";
+        foreach (char c in endText)
+        {
+            outroText.text += c;
+            yield return new WaitForSeconds(_typeSpeed * 2);
+        }
+        yield return new WaitForSeconds(1f);
+        _dateOver = false;
+        this.gameObject.SetActive(false);
+        //CHANGE SCENE
+        SceneManager.LoadScene("GameScene");
+        dayNum++; //increment dayNum
+    }
+
+    private void UpdateHeart()
+    {
+        Image fillHeart = _emptyHeart.handleRect.GetComponent<Image>();
+
+        if (fillHeart != null)
+        {
+            Debug.Log("Filling");
+            fillHeart.type = Image.Type.Filled;
+            fillHeart.fillAmount += (1f / 5f);
+        }
+    }
 
 
 
