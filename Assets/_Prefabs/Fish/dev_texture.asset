@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 114eb33c28aff3d44b4f87642b406244, type: 3}
-  m_Name: Seedyfish
+  m_Name: dev_texture
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  sprite: {fileID: 21300000, guid: 1cc30a93a8c4e1741a0a3f6f25c47abf, type: 3}
+  sprite: {fileID: 21300000, guid: 1a1729a8a742bcc40af64c7d09cd97bf, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   cost: 10
   liked: 1

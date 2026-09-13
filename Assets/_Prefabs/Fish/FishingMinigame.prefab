@@ -951,9 +951,9 @@ MonoBehaviour:
   reelingDonePitch: 2
   reelingPitch: 1.2
   losingPitch: 1.55
-  fishMoveSpeed: 0.9
+  fishMoveSpeed: 0.8
   reelInFishSpeed: 0.15
-  loseFishSpeed: 0.25
+  loseFishSpeed: 0.21
   mouseDistanceToFishToCount: 2.15
   endingDelay: 0.7
   endingPopupDuration: 1
@@ -1000,7 +1000,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 2f530085afde4994a9ea4c64b86cef40, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;       
+using System.Collections;     
+using System.Collections.Generic;  
 
 public class FishingMinigame : MonoBehaviour
 {
     public Fish fish;
     public Fish[] allFish;
+
+    [Header("Fish Randomization")]
+    public int fishRepeatCooldown = 5;
+
+    private static readonly Queue<Fish> recentFish = new Queue<Fish>();
 
     [Header("Audio Variables")]
     public float reelingDonePitch = 1.3f;
@@ -56,14 +62,43 @@ public class FishingMinigame : MonoBehaviour
     public bool startedFishingEnd;
     public bool caught;
 
-    public void StartGameRandomFish()
+    Fish GetRandomFish()
+{
+    List<Fish> availableFish = new List<Fish>();
+
+    foreach (Fish f in allFish)
     {
-        gameObject.SetActive(true);
-
-        fish = allFish[Random.Range(0, allFish.Length)];
-
-        StartGame();
+        if (!recentFish.Contains(f))
+            availableFish.Add(f);
     }
+
+    // Safety fallback if cooldown is larger than the available fish pool
+    if (availableFish.Count == 0)
+    {
+        recentFish.Clear();
+
+        foreach (Fish f in allFish)
+            availableFish.Add(f);
+    }
+
+    Fish chosenFish = availableFish[Random.Range(0, availableFish.Count)];
+
+    recentFish.Enqueue(chosenFish);
+
+    while (recentFish.Count > fishRepeatCooldown)
+        recentFish.Dequeue();
+
+    return chosenFish;
+}
+
+public void StartGameRandomFish()
+{
+    gameObject.SetActive(true);
+
+    fish = GetRandomFish();
+
+    StartGame();
+}
 
     private void StartGame()
     {
