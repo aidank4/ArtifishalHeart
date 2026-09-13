@@ -5,6 +5,7 @@ using System.Collections;
 public class FishingMinigame : MonoBehaviour
 {
     public Fish fish;
+    public Fish[] allFish;
 
     [Header("Audio Variables")]
     public float reelingDonePitch = 1.3f;
@@ -51,7 +52,16 @@ public class FishingMinigame : MonoBehaviour
     public bool reelingInFish;
     public bool startedFishingEnd;
 
-    private void Start()
+    public void StartGameRandomFish()
+    {
+        gameObject.SetActive(true);
+
+        fish = allFish[Random.Range(0, allFish.Length)];
+
+        StartGame();
+    }
+
+    private void StartGame()
     {
         audioSource.Play();
         fishCaughtPopup.SetActive(false);
@@ -68,6 +78,17 @@ public class FishingMinigame : MonoBehaviour
 
         fishSprite.sprite = fish.sprite;
         fishSprite.color = fish.color;
+
+        minigameCompletion = 0.5f;
+
+        RotateHookVisual();
+            
+        RotateFishingLineVisual();
+
+        startedFishingEnd = false;
+
+        fishParent.localPosition = currentFishPosition;
+        mouseVisual.localPosition = currentMousePosition;
     }
 
     private void Update()
@@ -134,7 +155,7 @@ public class FishingMinigame : MonoBehaviour
             Mathf.Clamp(currentMousePosition.y, -maxOffset.y, maxOffset.y)
         );
 
-        mouseVisual.position = currentMousePosition;
+        mouseVisual.localPosition = currentMousePosition;
     }
 
     void RotateFishingLineVisual()
@@ -174,7 +195,7 @@ public class FishingMinigame : MonoBehaviour
         float timeElapsed = 0f;
 
         Vector3 start = currentFishPosition;
-        Vector3 end = fishingLineOrigin.position;
+        Vector3 end = fishingLineOrigin.localPosition;
 
         while(timeElapsed < catchAnimationDuration)
         {
@@ -191,5 +212,7 @@ public class FishingMinigame : MonoBehaviour
         yield return new WaitForSeconds(endingPopupDuration);
 
         fishCaughtPopup.SetActive(false);
+
+        gameObject.SetActive(false);
     }
 }
