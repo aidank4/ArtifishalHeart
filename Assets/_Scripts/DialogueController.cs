@@ -20,11 +20,19 @@ public class DialogueController : MonoBehaviour
         public string text;
         public bool question;
         public bool player;
+        public bool fish;
         public bool finishesDate;
     }
 
     //struct array for dialogue lines
     public DialogueEntry[] dialogueLines;
+
+    //string arrays for varying responses
+    public string[] fishResponsesGood;
+    public string[] fishResponsesBad;
+    public string[] choiceResponsesGood;
+    public string[] choiceResponsesBad;
+
 
 
 
@@ -43,6 +51,8 @@ public class DialogueController : MonoBehaviour
     public int dateNum = 1;
 
     public bool playerDialogue = false;
+
+    private bool _dateOver = false;
 
 
     private void Awake()
@@ -101,6 +111,10 @@ public class DialogueController : MonoBehaviour
             //time for player to choose response
             playerDialogue = true;
         }
+        if (dialogueLines[_index].finishesDate)
+        {
+            _dateOver = true;
+        }
     }
 
     public void NextLine()
@@ -121,6 +135,16 @@ public class DialogueController : MonoBehaviour
 
         }
 
+        if (_dateOver)
+        {
+            _dateOver = false;
+            this.gameObject.SetActive(false);
+            //close UI
+            //dateNum +=1;
+
+            ///When player reopens date scene, StartDialogue needs to be called
+        }
+
         //Update text to reflect choice
         if (_playerDialogueScript.choiceSelected == true)
         {
@@ -137,13 +161,20 @@ public class DialogueController : MonoBehaviour
             StartCoroutine(TypeLine());
         }
 
-        if (dialogueLines[_index].finishesDate)
+        if (dialogueLines[_index].fish)
         {
-            //close UI
-            //dateNum +=1;
+            /*if (FishManager.Fish.like == true)
+            {
+                _index++;
+            _textLover.text = string.Empty;
+            dialogueLines[_index].text =
 
-            ///When player reopens date scene, StartDialogue needs to be called
+            }
+            _index++;
+            _textLover.text = string.Empty;
+            dialogueLines[_index].text = */
         }
+
 
     }
 
@@ -157,6 +188,7 @@ public class DialogueController : MonoBehaviour
             {
                 Debug.Log("next");
                 NextLine();
+
             }
             else
             {
@@ -175,7 +207,7 @@ public class DialogueController : MonoBehaviour
                 //Check for end of conversation
                 if (dialogueLines[_index].finishesDate)
                 {
-
+                    _dateOver = true;
                 }
             }
         }
