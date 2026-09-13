@@ -14,19 +14,20 @@ public class PlayerDialogue : MonoBehaviour
     }
 
     //Can have an array of these for each question
-    public DialogueOptions[] optionsDateOne;
-    public DialogueOptions[] optionsDateTwo;
+    public DialogueOptions[] optionsChoiceOne;
+    public DialogueOptions[] optionsChoiceTwo;
 
     public RawImage optionsBox;
 
-    [SerializeField] private TextMeshProUGUI _textOptionA;
-    [SerializeField] private TextMeshProUGUI _textOptionB;
-    [SerializeField] private TextMeshProUGUI _textOptionC;
-    [SerializeField] private TextMeshProUGUI _textOptionD;
+    [SerializeField] private TMP_Text _textOptionA;
+    [SerializeField] private TMP_Text _textOptionB;
+    [SerializeField] private TMP_Text _textOptionC;
+    [SerializeField] private TMP_Text _textOptionD;
 
     private DialogueController _dialogueControllerScript;
 
     public bool choiceSelected = false;
+    public bool likedChoice;
 
 
     //this variable is accessed by dialogue script to use button text as response text
@@ -44,17 +45,17 @@ public class PlayerDialogue : MonoBehaviour
         switch (_dialogueControllerScript.dateNum)
         {
             case 1:
-                _textOptionA.text = optionsDateOne[0].text;
-                _textOptionB.text = optionsDateOne[1].text;
-                _textOptionC.text = optionsDateOne[2].text;
-                _textOptionD.text = optionsDateOne[3].text;
+                _textOptionA.text = optionsChoiceOne[0].text;
+                _textOptionB.text = optionsChoiceOne[1].text;
+                _textOptionC.text = optionsChoiceOne[2].text;
+                _textOptionD.text = optionsChoiceOne[3].text;
                 break;
 
             case 2:
-                _textOptionA.text = optionsDateTwo[0].text;
-                _textOptionB.text = optionsDateTwo[1].text;
-                _textOptionC.text = optionsDateTwo[2].text;
-                _textOptionD.text = optionsDateTwo[3].text;
+                _textOptionA.text = optionsChoiceTwo[0].text;
+                _textOptionB.text = optionsChoiceTwo[1].text;
+                _textOptionC.text = optionsChoiceTwo[2].text;
+                _textOptionD.text = optionsChoiceTwo[3].text;
                 break;
             default:
                 Debug.Log("out of dates");
@@ -73,8 +74,33 @@ public class PlayerDialogue : MonoBehaviour
         buttonText = button.GetComponentInChildren<TMP_Text>();
         Debug.Log(buttonText.text);
 
-
+        ChoiceResponse();
         //Start text again
         _dialogueControllerScript.NextLine();
     }
+
+
+
+
+    //Switch won't accept TMPTEXT so shitty switch
+    public void ChoiceResponse()
+    {
+        if (buttonText.text == _textOptionA.text)
+        {
+            likedChoice = optionsChoiceOne[0].goodResponse;
+        }
+        else if (buttonText.text == _textOptionB.text)
+        {
+            likedChoice = optionsChoiceOne[1].goodResponse;
+        }
+        else if (buttonText.text == _textOptionC.text)
+        {
+            likedChoice = optionsChoiceOne[2].goodResponse;
+        }
+        else if (buttonText.text == _textOptionD.text)
+        {
+            likedChoice = optionsChoiceOne[3].goodResponse;
+        }
+    }
+
 }

@@ -46,7 +46,10 @@ public class DialogueController : MonoBehaviour
 
     
     [SerializeField] private float _typeSpeed = 0.05f;
-    [SerializeField] private int _index;
+
+    private int _index;
+    private int _choiceIndex;
+
 
     public int dateNum = 1;
 
@@ -153,6 +156,18 @@ public class DialogueController : MonoBehaviour
             _index++;
             _textLover.text = string.Empty;
             dialogueLines[_index].text = _playerDialogueScript.buttonText.text; // befure UI incase it going inactive matters
+
+            //Configure following Line to be dynamic response
+            if (_playerDialogueScript.likedChoice)
+            {
+                dialogueLines[_index + 1].text = choiceResponsesGood[_choiceIndex];
+                _choiceIndex++;
+            }
+            else if (!_playerDialogueScript.likedChoice)
+            {
+                dialogueLines[_index + 1].text = choiceResponsesBad[_choiceIndex];
+                _choiceIndex++;
+            }
 
             //reconfigure UI
             _dialogueBox.gameObject.SetActive(true);
