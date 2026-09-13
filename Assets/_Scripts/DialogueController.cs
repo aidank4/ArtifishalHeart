@@ -213,11 +213,11 @@ public class DialogueController : MonoBehaviour
                 dayNum = 0;
                 if (score >= 5)
                 {
-                    //SceneManager.LoadScene("WinScene");
+                    SceneManager.LoadScene("WinScene");
                 }
                 else
                 {
-                    //SceneManager.LoadScene("LoseScene");
+                    SceneManager.LoadScene("LoseScene");
                 }
             }
             else
