@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 114eb33c28aff3d44b4f87642b406244, type: 3}
-  m_Name: Bluefih
+  m_Name: Outletfish
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  sprite: {fileID: 21300000, guid: 42d04468373cdc5479ee999d89f63e4a, type: 3}
-  color: {r: 0, g: 1, b: 0.96274537, a: 1}
+  sprite: {fileID: 21300000, guid: 31220aaa2b44a3d4fbebbda13f14b9bf, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
   cost: 10
+  liked: 1

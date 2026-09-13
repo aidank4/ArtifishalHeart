@@ -6,6 +6,8 @@ using TMPro;
 public class FishingCountdown : MonoBehaviour
 {
     public TextMeshProUGUI countdown;
+    public TextMeshProUGUI day;
+    public GameObject dayEndPopup;
     public int secondsInDay = 120;
     public float timeSinceTimeSwitch;
     int index;
@@ -75,6 +77,7 @@ public class FishingCountdown : MonoBehaviour
     };
     void Start(){
         countdown.text = times[index];
+        day.text = $"Day {DialogueController.dayNum}/3";
     }
 
     // Update is called once per frame

@@ -22,7 +22,10 @@ public class CastFishingRod : MonoBehaviour
     public FishingMinigame fishingMinigame;
     public FishingResults fishingResults;
     public PlayerControls playerMovement;
-
+    public AudioSource srcCast;
+    public AudioSource srcBite;
+    public AudioSource srcReel;
+    public AudioSource srcClick;
     [Header("Debug")]
     public bool lineIsCast = false;
     public bool fishOnLine = false;
@@ -67,6 +70,10 @@ public class CastFishingRod : MonoBehaviour
 
             //FISH CAUGHT
             if(timeSinceLineCast > timeForNextFish){
+                if(!fishAvailable)
+                {
+                    PlaySFX(srcBite);
+                }
                 fishAvailable = true;
 
                 if(timeSinceLineCast > timeForNextFish + timetoCatchFishBobber)
@@ -76,11 +83,14 @@ public class CastFishingRod : MonoBehaviour
                     SetRandomNextFishTime();
                 }
 
+                //START
                 if(clicked)
                 {
                     fishingMinigame.StartGameRandomFish();
                     fishOnLine = true;
                     fishAvailable = false;
+
+                    PlaySFX(srcClick);
                 }
 
                 Debug.Log("fishtyy!@!!!");
@@ -128,6 +138,8 @@ public class CastFishingRod : MonoBehaviour
 
         yield return new WaitForSeconds(boberDelay);
 
+        PlaySFX(retract ? srcReel : srcCast);
+
         bobber.gameObject.SetActive(true);
 
         Vector3 start = fishingLineOrigin.position;
@@ -164,5 +176,10 @@ public class CastFishingRod : MonoBehaviour
             SetRandomNextFishTime(); 
             StartCoroutine(CastLine_cr(true, caught));
             Debug.Log("fishing OVERRERR");
+    }
+
+    void PlaySFX(AudioSource src)
+    {
+        src.PlayOneShot(src.clip);
     }
 }
