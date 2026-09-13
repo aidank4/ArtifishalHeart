@@ -42,7 +42,9 @@ public class FishingMinigame : MonoBehaviour
     public SpriteRenderer fishSprite;
     public AudioSource audioSource;
     public GameObject fishCaughtPopup;
+    public GameObject fishGotAwayPopup;
     public FishingResults fishingResults;
+    public Animator fishGotAwayAnimator;
 
     [Header("Debug")]
     public float minigameCompletion = 0.5f;
@@ -52,6 +54,7 @@ public class FishingMinigame : MonoBehaviour
     public Vector2 mouseDelta;
     public bool reelingInFish;
     public bool startedFishingEnd;
+    public bool caught;
 
     public void StartGameRandomFish()
     {
@@ -64,8 +67,11 @@ public class FishingMinigame : MonoBehaviour
 
     private void StartGame()
     {
+        caught = false;
+
         audioSource.Play();
         fishCaughtPopup.SetActive(false);
+        fishGotAwayPopup.SetActive(false);
 
         HideCursor(true);
 
@@ -94,7 +100,7 @@ public class FishingMinigame : MonoBehaviour
 
     private void Update()
     {
-        if(minigameCompletion < 1f) 
+        if(minigameCompletion < 1f && minigameCompletion > 0f) 
         {
             MoveFish_PerlinNoise();
         
@@ -118,13 +124,19 @@ public class FishingMinigame : MonoBehaviour
             mouseVisual.localScale = Vector3.Lerp(mouseVisual.localScale, targetMouseSize, Time.deltaTime * mouseVisualSizeChangeSpeed);
         }
         else
-        {
-            if(!startedFishingEnd)
-            {
+        {   
+            if(!startedFishingEnd){
                 startedFishingEnd = true;
-                StartCoroutine(FishCaught_cr());
-
                 HideCursor(false);
+
+                //WINNER!!!
+                if(minigameCompletion >= 1f)
+                {
+                    StartCoroutine(FishCaught_cr());
+                }else{
+                    //LOSER!!!!!!
+                    StartCoroutine(FishGotAway_cr());
+                }
             }
         }
     }
@@ -186,11 +198,51 @@ public class FishingMinigame : MonoBehaviour
 
     IEnumerator FishCaught_cr()
     {
+        caught = true;
+        
         audioSource.Stop();
 
         fishCaughtPopup.SetActive(true);
 
         yield return new WaitForSeconds(endingDelay);
+
+        audioSource.pitch = reelingDonePitch;
+        audioSource.Play();
+
+        float timeElapsed = 0f;
+
+        Vector3 start = currentFishPosition;
+        Vector3 end = fishingLineOrigin.localPosition;
+
+        while(timeElapsed < catchAnimationDuration)
+        {
+            float completion = timeElapsed / catchAnimationDuration;
+            currentFishPosition = Vector3.Lerp(start, end, completion);
+            fishParent.localPosition = currentFishPosition;
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.Stop();
+
+        yield return new WaitForSeconds(endingPopupDuration);
+
+        fishCaughtPopup.SetActive(false);
+
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator FishGotAway_cr()
+    {
+        fishGotAwayAnimator.CrossFade("GotAway",0.02f);
+
+        audioSource.Stop();
+
+        fishGotAwayPopup.SetActive(true);
+
+        yield return new WaitForSeconds(endingDelay);
+
 
         audioSource.pitch = reelingDonePitch;
         audioSource.Play();

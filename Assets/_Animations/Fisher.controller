@@ -82,7 +82,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: fisher idle loop
-  m_Speed: 1
+  m_Speed: 0.75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4641885297442894051}
@@ -185,7 +185,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WALK
-  m_Speed: 1
+  m_Speed: 0.75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 739003035788465391}
@@ -242,7 +242,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2424504604300769202}
-    m_Position: {x: 260, y: 80, z: 0}
+    m_Position: {x: 260, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4774102646350495641}
     m_Position: {x: 260, y: 170, z: 0}
