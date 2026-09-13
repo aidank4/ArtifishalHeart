@@ -350,8 +350,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -503,10 +503,10 @@ RectTransform:
   - {fileID: 177556669}
   m_Father: {fileID: 1466881920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 480, y: -261}
+  m_SizeDelta: {x: 530, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315535692
 MonoBehaviour:
@@ -874,10 +874,10 @@ RectTransform:
   - {fileID: 1105951713}
   m_Father: {fileID: 1466881920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 480, y: -139}
+  m_SizeDelta: {x: 530, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &642307704
 MonoBehaviour:
@@ -1008,6 +1008,8 @@ RectTransform:
   - {fileID: 1286703436}
   - {fileID: 277148945}
   - {fileID: 1466881920}
+  - {fileID: 855449333}
+  - {fileID: 1887982951}
   m_Father: {fileID: 1686708732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1079,6 +1081,269 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &855449332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855449333}
+  - component: {fileID: 855449336}
+  - component: {fileID: 855449335}
+  - component: {fileID: 855449334}
+  m_Layer: 5
+  m_Name: Scrollbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &855449333
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855449332}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1810989904}
+  m_Father: {fileID: 758729335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -801, y: 0}
+  m_SizeDelta: {x: 261, y: 222.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &855449334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855449332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Scrollbar
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1275503270}
+  m_HandleRect: {fileID: 1275503269}
+  m_Direction: 0
+  m_Value: 0
+  m_Size: 0.2
+  m_NumberOfSteps: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &855449335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855449332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &855449336
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855449332}
+  m_CullTransparentMesh: 1
+--- !u!1 &908418566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908418567}
+  - component: {fileID: 908418569}
+  - component: {fileID: 908418568}
+  m_Layer: 0
+  m_Name: IntroText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &908418567
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908418566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1887982951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &908418568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908418566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Date Starting
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 73.4
+  m_fontSizeBase: 73.4
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 3
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &908418569
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908418566}
+  m_CullTransparentMesh: 1
 --- !u!1 &1105951712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,8 +1438,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1290,6 +1555,81 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1 &1275503268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275503269}
+  - component: {fileID: 1275503271}
+  - component: {fileID: 1275503270}
+  m_Layer: 5
+  m_Name: Handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1275503269
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275503268}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1810989904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1275503270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275503268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1275503271
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275503268}
+  m_CullTransparentMesh: 1
 --- !u!1 &1286703435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1466881920
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1497,10 +1837,10 @@ RectTransform:
   - {fileID: 1652949458}
   m_Father: {fileID: 1466881920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1020, y: -139}
+  m_SizeDelta: {x: 530, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1631267801
 MonoBehaviour:
@@ -1762,8 +2102,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1909,74 +2249,312 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueController
   dialogueLines:
-  - text: Datem, I brought you a fish!
+  - text: "Hey, I saw you earlier at the beach and I couldn\u2019t help but keep
+      my camera on you."
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: What is your name?
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: "Oooh, that\u2019s nice, my name is Datem! "
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: What is yours?
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: "I\u2019m F1scher!  "
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Is there anything I can do for you?
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Oh ya, I almost forgot, I brought you this fish!
     question: 0
     player: 1
     fish: 1
     finishesDate: 0
-  - text: Yaay thanks
+  - text: Fish Response
     question: 0
     player: 0
     fish: 0
     finishesDate: 0
-  - text: "Beautiful day we\u2019re having, aren\u2019t we?"
-    question: 0
-    player: 1
-    fish: 0
-    finishesDate: 0
-  - text: 'Um...Yes. What do you think about my outfit '
+  - text: What do you like doing when you are not busy?
     question: 1
     player: 0
     fish: 0
     finishesDate: 0
-  - text: 'Choices '
+  - text: Question Response
     question: 0
     player: 1
     fish: 0
     finishesDate: 0
-  - text: Reaction
+  - text: Datem Response
     question: 0
     player: 0
     fish: 0
     finishesDate: 0
-  - text: Anyways, I was thinking about how nice it would be to get dinner together.
+  - text: What do you like to do?
     question: 0
     player: 1
     fish: 0
     finishesDate: 0
-  - text: I would love that
+  - text: "Hmmm\u2026 recently I have been loving sushi."
     question: 0
     player: 0
+    fish: 0
+    finishesDate: 0
+  - text: I really like that local fish, the gold fih!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: "That\u2019s awesome I think I have seen those before!"
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: I will keep my camera out for one!
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: hahaha okk, it was nice meeting you.
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: 'The pleasure is all mine. '
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 1
+  - text: Datem!!! I am so happy to see you!
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Look what I found! I brought it for you.
+    question: 0
+    player: 1
+    fish: 1
+    finishesDate: 0
+  - text: 'Fish Response '
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: I also thought about you today.
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: What do you think of my outfit?
+    question: 1
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Choice Response
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Response Response
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: What do you think of mine?
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: I think you are really cute!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: "\u2026 beep"
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: What did you say?
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: "Nothing, nothing\u2026"
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Oh ok, I was almost worried.
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Are you having a good time?
+    question: 1
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Choice Response
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Response Response
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Thanks
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Oh no! I am so sorry!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: My electricity started feeling weird.
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Oh no, should I go?
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: "Ya, I am sorry, it\u2019s urgent!"
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Wait, but hold on. Come see me tomorrow!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Alright!
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 1
+  - text: F1scher how was your day!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: So Amazing!!!! I caught so many fish!!
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Oh wow, did you bring me one?
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Yes, here you go.
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: I hope you like it!
+    question: 0
+    player: 1
+    fish: 1
+    finishesDate: 0
+  - text: Fish Response
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Would you like to come fishing with me this weekend?
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: I would love to!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: YAY! I just struck goldfish!
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Hahahaha you are so funny!
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: What is it about you?
+    question: 1
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: Choice Response
+    question: 0
+    player: 1
+    fish: 0
+    finishesDate: 0
+  - text: Response Response
+    question: 0
+    player: 0
+    fish: 0
+    finishesDate: 0
+  - text: I love you too!
+    question: 0
+    player: 1
     fish: 0
     finishesDate: 1
   fishResponsesGood:
-  - Oh my gosh that's my favorite! you are the best.
-  - How did you know that I love these?
-  - you are so sweet thank you.
+  - "You really got this for me? Aw, that\u2019s so sweet of you!"
+  - Oooh, my favorite! You really did remember!
+  - Wow, you got me this one? This is, like, a really expensive fish!
   fishResponsesBad:
-  - 'oh, umm I guess ill take this '
-  - ewww that stinks why would you bring me such a wierd fish
-  - thanks for the thought but i am ok.
+  - 'oh, umm I guess ill take this. '
+  - "Oh, I don\u2019t really like this kind. Nice try, though. Haha"
+  - "Uh, this wasn\u2019t what I asked for?"
   choiceResponsesGood:
-  - Good REsponse 1
-  - Good REsponse 2
-  - Good REsponse 3
-  - Good REsponse 4
+  - Ohh, how exciting!
+  - "You\u2019re so sweet!"
+  - "Oh my god, you\u2019re so funny!"
+  - I love you!
   - Good REsponse 5
   - Good REsponse 6
   choiceResponsesBad:
-  - Bad Response 1
-  - Bad Response 2
-  - Bad Response 3
-  - Bad Response 4
+  - "Well, that\u2019s rude! What is your problem?! "
+  - 'Umm, ok? '
+  - 'Thats so corny! '
+  - 'Well...thats something. '
   - Bad Response 5
   - Bad Response 6
   _textLover: {fileID: 31041247}
   _dialogueBox: {fileID: 277148946}
   _playerSprite: {fileID: 1157004683}
   _loverSprite: {fileID: 639933845}
+  _backgroundSprite: {fileID: 1286703437}
+  _dateStartImage: {fileID: 1887982952}
   _typeSpeed: 0.05
-  dateNum: 1
+  _index: 0
   playerDialogue: 0
   fishTime: 0
   datingFish: {fileID: 11400000, guid: 00ff841bfc6b3f6418824c85afbf6f57, type: 2}
@@ -1993,15 +2571,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDialogue
   optionsChoiceOne:
-  - text: The correct response
+  - text: Travelling.
     goodResponse: 1
-  - text: bad response
-    goodResponse: 0
-  - text: pointless
-    goodResponse: 0
-  - text: woooooo
+  - text: Dancing the robot!
     goodResponse: 1
-  optionsChoiceTwo: []
+  - text: Fishing for you!
+    goodResponse: 1
+  - text: You!
+    goodResponse: 0
+  optionsChoiceTwo:
+  - text: I don't know.
+    goodResponse: 0
+  - text: It highlights your best features.
+    goodResponse: 1
+  - text: It's very pretty!
+    goodResponse: 1
+  - text: "It\u2019 is... something!"
+    goodResponse: 0
+  optionsChoiceThree:
+  - text: The tide is really grinding my gears.
+    goodResponse: 0
+  - text: Oh yeah, I love the smell of fish!
+    goodResponse: 1
+  - text: It's not like the ocean.
+    goodResponse: 0
+  - text: "When I\u2019m with you, I could be anywhere! "
+    goodResponse: 1
+  optionsChoiceFour:
+  - text: "I\u2019m a real love machine, baby!"
+    goodResponse: 1
+  - text: The fish know.
+    goodResponse: 0
+  - text: My favorite dance is the robot!
+    goodResponse: 1
+  - text: "I\u2019m very happy when I\u2019m with you."
+    goodResponse: 1
+  optionsChoiceFive: []
   optionsBox: {fileID: 1466881922}
   _textOptionA: {fileID: 1105951715}
   _textOptionB: {fileID: 1652949460}
@@ -2077,8 +2682,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2228,6 +2833,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1810989903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810989904}
+  m_Layer: 5
+  m_Name: Sliding Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1810989904
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810989903}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1275503269}
+  m_Father: {fileID: 855449333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: -20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1850987450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,6 +2996,79 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1887982950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1887982951}
+  - component: {fileID: 1887982953}
+  - component: {fileID: 1887982952}
+  m_Layer: 0
+  m_Name: DateIntro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1887982951
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887982950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 908418567}
+  m_Father: {fileID: 758729335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 32.64}
+  m_SizeDelta: {x: 1500, y: 400}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1887982952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887982950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 2b8676fa6be98a345933440f0dc49be3, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1887982953
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887982950}
+  m_CullTransparentMesh: 1
 --- !u!1 &1947386855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2389,10 +3103,10 @@ RectTransform:
   - {fileID: 1694300257}
   m_Father: {fileID: 1466881920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1020, y: -261}
+  m_SizeDelta: {x: 530, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947386857
 MonoBehaviour:

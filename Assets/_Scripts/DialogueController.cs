@@ -44,11 +44,13 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private RawImage _dialogueBox;
     [SerializeField] private RawImage _playerSprite;
     [SerializeField] private RawImage _loverSprite;
+    [SerializeField] private RawImage _backgroundSprite;
+    [SerializeField] private RawImage _dateStartImage;
 
     
     [SerializeField] private float _typeSpeed = 0.05f;
 
-    private int _index = 0;
+    [SerializeField] private int _index = 0;
     private int _choiceIndex = 0;
     private int _fishIndex = 0;
 
@@ -59,6 +61,7 @@ public class DialogueController : MonoBehaviour
     public bool playerDialogue = false;
 
     private bool _dateOver = false;
+    private bool _dateStarted = false;
     public bool fishTime = false;
 
 
@@ -66,11 +69,14 @@ public class DialogueController : MonoBehaviour
 
     private void Awake()
     {
+        //show cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         //ref
         _playerDialogueScript = GetComponent<PlayerDialogue>();
 
         //starting active UI
-        _dialogueBox.gameObject.SetActive(true);
+        //_dialogueBox.gameObject.SetActive(true);
         _playerDialogueScript.optionsBox.gameObject.SetActive(false);
 
         _textLover.text = string.Empty;
@@ -91,17 +97,22 @@ public class DialogueController : MonoBehaviour
                 _choiceIndex = 0;
                 break;
             case 2:
-                _index = 10;
+                _index = 18;
+                _fishIndex = 1;
+                _choiceIndex = 1;
                 break;
             case 3:
-                _index = 25;
+                _index = 41;
+                _fishIndex = 2;
+                _choiceIndex = 3;
                 break;
             default:
                 _index = 1;
                 break;
         }
-
-        StartCoroutine(TypeLine());
+        _dateStarted = false;
+        StartCoroutine(DateIntro());
+        //StartCoroutine(TypeLine()); moved into above coroutine
     }
 
 
@@ -112,6 +123,11 @@ public class DialogueController : MonoBehaviour
     IEnumerator TypeLine()
     {
         SpriteSelector();
+        if (!dialogueLines[_index].player)
+        {
+            StartCoroutine(SpriteSquish());
+        }
+
         foreach (char c in dialogueLines[_index].text.ToCharArray())
         {
             _textLover.text += c;
@@ -154,11 +170,20 @@ public class DialogueController : MonoBehaviour
 
         if (_dateOver)
         {
-            _dateOver = false;
-            this.gameObject.SetActive(false);
-            //CHANGE SCENE
-            SceneManager.LoadScene("GameScene");
-            dayNum++; //increment dayNum
+            if (dayNum == 3)
+            {
+                //SceneManager.LoadScene("EndScene");
+                //end scene will check if score meets a threshold for which background it shows
+            }
+            else
+            {
+                _dateOver = false;
+                this.gameObject.SetActive(false);
+                //CHANGE SCENE
+                SceneManager.LoadScene("GameScene");
+                dayNum++; //increment dayNum
+            }
+
         }
 
         if (fishTime)
@@ -215,7 +240,7 @@ public class DialogueController : MonoBehaviour
 
     public void SkipLine(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && _dateStarted)
         {
 
             if (_textLover.text == dialogueLines[_index].text)
@@ -265,6 +290,33 @@ public class DialogueController : MonoBehaviour
             _playerSprite.gameObject.SetActive(false);
             _loverSprite.gameObject.SetActive(true);
         }
+    }
+
+    IEnumerator SpriteSquish()
+    {
+        Vector3 normalScale = _backgroundSprite.transform.localScale;
+        _backgroundSprite.transform.localScale = new Vector3(0.73f, 0.73f, 1f);
+        yield return new WaitForSeconds(0.03f);
+        _backgroundSprite.transform.localScale = normalScale;
+
+    }
+
+
+    IEnumerator DateIntro()
+    {
+        TMP_Text introText =_dateStartImage.GetComponentInChildren<TMP_Text>();
+        introText.text = string.Empty;
+        string startText = "Date Starting";
+        foreach (char c in startText)
+        {
+            introText.text += c;
+            yield return new WaitForSeconds(_typeSpeed * 2);
+        }
+        yield return new WaitForSeconds(1f);
+        _dateStartImage.gameObject.SetActive(false);
+        _dialogueBox.gameObject.SetActive(true);
+        StartCoroutine(TypeLine());
+        _dateStarted = true;
     }
 
 
