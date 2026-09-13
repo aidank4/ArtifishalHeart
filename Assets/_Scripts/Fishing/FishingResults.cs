@@ -57,5 +57,7 @@ public class FishingResults : MonoBehaviour
 
         fishName1InInventory.text = fish.name;
         fishName2InInventory.text = fish.name;
+
+        currentFishHeld = fish;
     }
 }

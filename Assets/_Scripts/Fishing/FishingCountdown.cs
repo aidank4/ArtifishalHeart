@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class FishingCountdown : MonoBehaviour
     public TextMeshProUGUI day;
     public GameObject dayEndPopup;
     public int secondsInDay = 120;
+    public int dayEndDelay = 2;
     public float timeSinceTimeSwitch;
     int index;
 
@@ -97,7 +99,16 @@ public class FishingCountdown : MonoBehaviour
 
         if(index >= times.Length-1)
         {
-            SceneManager.LoadScene("AidanTesting");
+            StartCoroutine(load_cr());
         }
+    }
+
+    IEnumerator load_cr()
+    {   
+        dayEndPopup.SetActive(true);
+
+        yield return new WaitForSeconds(dayEndDelay);
+
+        SceneManager.LoadScene("AidanTesting");
     }
 }

@@ -9,10 +9,22 @@ EditorBuildSettings:
     path: Assets/_Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/_Scenes/MainMenu.unity
+    guid: 3a18ce71068e33f4394de3b3bc9fb84f
+  - enabled: 1
+    path: Assets/_Scenes/IntroScene.unity
+    guid: 1c68826c18c825246b3441e014f24ee8
+  - enabled: 1
     path: Assets/_Scenes/GameScene.unity
     guid: b2028463517628041a64a70eaabac99d
   - enabled: 1
     path: Assets/_Scenes/AidanTesting.unity
     guid: a9d3cac6403cf4340b0afd0d961ca3af
+  - enabled: 1
+    path: Assets/_Scenes/LoseScene.unity
+    guid: 063893cd10d32f94ea26a29a3769fee7
+  - enabled: 1
+    path: Assets/_Scenes/WinScene.unity
+    guid: 023e1c59ec4f5e2428b15409a02337c0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

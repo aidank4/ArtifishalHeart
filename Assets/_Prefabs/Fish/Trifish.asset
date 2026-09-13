@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 17b913eb7607d2d43aa94e5233b56ebc, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   cost: 10
-  liked: 1
+  liked: 0
