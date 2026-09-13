@@ -91,7 +91,7 @@ public class CastFishingRod : MonoBehaviour
         // FISHING WIN
         if(fishOnLine && !fishingMinigame.transform.gameObject.activeSelf)
         {
-            FishingOver(true);
+            FishingOver(fishingMinigame.caught);
         }
 
         if(!lineIsCast)

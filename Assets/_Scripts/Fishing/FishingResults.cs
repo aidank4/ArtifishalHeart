@@ -14,7 +14,7 @@ public class FishingResults : MonoBehaviour
     public TextMeshProUGUI fishName1InInventory;
     public TextMeshProUGUI fishName2InInventory;
     [Space]
-    public static Fish currentFishHeld;
+    public Fish currentFishHeld;
     public Fish currentFishInspected;
 
     public bool showing = false;
