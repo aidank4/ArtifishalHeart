@@ -5,6 +5,7 @@ using System.Collections;
 public class CastFishingRod : MonoBehaviour
 {
     [Header("Vars")]
+    public float boberDelay = 0.2f;
     public float timetoCatchFishBobber = 0.4f;
     public float castLineDuration = 1f;
     public float castLineHeight = 3f;
@@ -12,12 +13,14 @@ public class CastFishingRod : MonoBehaviour
     public Vector2 timeToNextFishRange = new Vector2(2f, 5f);
 
     [Header("Dependencies")]
+    public Animator animator;
     public Transform fishingLineOrigin;
     public Transform line;
     public Transform bobber;
     public Transform fisherModel;
     public GameObject fishAvailablePopup;
     public FishingMinigame fishingMinigame;
+    public FishingResults fishingResults;
     public PlayerControls playerMovement;
 
     [Header("Debug")]
@@ -38,7 +41,7 @@ public class CastFishingRod : MonoBehaviour
 
     void Update(){
 
-        bool clicked = _castAction.action.WasPressedThisFrame();
+        bool clicked = _castAction.action.WasPressedThisFrame() && !castingLineAnimating && !fishingResults.showing;
 
         // CAST THE LINE
         if(!castingLineAnimating && !lineIsCast && !fishingMinigame.transform.gameObject.activeSelf && clicked)
@@ -55,7 +58,7 @@ public class CastFishingRod : MonoBehaviour
         // Retract cast line
         if(!castingLineAnimating && lineIsCast && !fishOnLine && clicked && !fishAvailable)
         {
-            FishingOver();
+            FishingOver(false);
         }else
 
         if(lineIsCast && !fishOnLine)
@@ -85,10 +88,10 @@ public class CastFishingRod : MonoBehaviour
             
         }else
 
-        // FISHING OVER
+        // FISHING WIN
         if(fishOnLine && !fishingMinigame.transform.gameObject.activeSelf)
         {
-            FishingOver();
+            FishingOver(true);
         }
 
         if(!lineIsCast)
@@ -99,9 +102,11 @@ public class CastFishingRod : MonoBehaviour
     
         fishAvailablePopup.SetActive(fishAvailable);
         line.gameObject.SetActive(bobber.gameObject.activeSelf);
+    }
 
+    void LateUpdate()
+    {
         SetLine(fishingLineOrigin.position, bobber.position);
-        
     }
 
     void SetLine(Vector3 a, Vector3 b)
@@ -115,11 +120,15 @@ public class CastFishingRod : MonoBehaviour
         timeForNextFish = Random.Range(timeToNextFishRange.x, timeToNextFishRange.y);
     }
 
-    IEnumerator CastLine_cr(bool retract)
+    IEnumerator CastLine_cr(bool retract, bool caught = false)
     {
-        bobber.gameObject.SetActive(true);
-
         castingLineAnimating = true;
+
+        animator.CrossFade(retract ? "Retract" : "Cast", 0.06f);
+
+        yield return new WaitForSeconds(boberDelay);
+
+        bobber.gameObject.SetActive(true);
 
         Vector3 start = fishingLineOrigin.position;
         Vector3 end = transform.position + (fisherModel.forward * 10f);
@@ -136,21 +145,24 @@ public class CastFishingRod : MonoBehaviour
             yield return null;
         }
 
-        castingLineAnimating = false;
 
         if(retract)
         {
             bobber.gameObject.SetActive(false);
         }
+
+        if(retract && caught    ) fishingResults.ShowResults(fishingMinigame.fish);
+
+        castingLineAnimating = false;
     }
 
-    void FishingOver()
+    void FishingOver(bool caught)
     {
         lineIsCast = false;
             fishOnLine = false;
             playerMovement.enabled = true;
             SetRandomNextFishTime(); 
-            StartCoroutine(CastLine_cr(true));
+            StartCoroutine(CastLine_cr(true, caught));
             Debug.Log("fishing OVERRERR");
     }
 }

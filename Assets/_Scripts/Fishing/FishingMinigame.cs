@@ -42,6 +42,7 @@ public class FishingMinigame : MonoBehaviour
     public SpriteRenderer fishSprite;
     public AudioSource audioSource;
     public GameObject fishCaughtPopup;
+    public FishingResults fishingResults;
 
     [Header("Debug")]
     public float minigameCompletion = 0.5f;
@@ -66,7 +67,7 @@ public class FishingMinigame : MonoBehaviour
         audioSource.Play();
         fishCaughtPopup.SetActive(false);
 
-        HideCursor();
+        HideCursor(true);
 
         var randomStartingPosition = new Vector2(
             Random.Range(-maxOffset.x, maxOffset.x),
@@ -122,15 +123,17 @@ public class FishingMinigame : MonoBehaviour
             {
                 startedFishingEnd = true;
                 StartCoroutine(FishCaught_cr());
+
+                HideCursor(false);
             }
         }
     }
 
-    void HideCursor()
+    void HideCursor(bool hide)
     {
         // Lock the cursor to the center of the screen and hide it 
-        Cursor.lockState = CursorLockMode.Locked; 
-        Cursor.visible = false; 
+        Cursor.lockState = hide ? CursorLockMode.Locked : CursorLockMode.None; 
+        Cursor.visible = !hide; 
     }
 
     void MoveMouse()
