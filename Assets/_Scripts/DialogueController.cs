@@ -48,7 +48,8 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private RawImage _backgroundSprite;
     [SerializeField] private RawImage _dateStartImage;
     [SerializeField] private Scrollbar _emptyHeart;
-    
+
+    [SerializeField] private RawImage _fishSprite;
 
     [SerializeField] private Texture _happy;
     [SerializeField] private Texture _mad;
@@ -70,6 +71,7 @@ public class DialogueController : MonoBehaviour
     private bool _dateStarted = false;
     private bool _dateEnded = false;
     public bool fishTime = false;
+    private bool _showFish = false;
 
 
     public Fish datingFish;
@@ -83,6 +85,7 @@ public class DialogueController : MonoBehaviour
         _playerDialogueScript = GetComponent<PlayerDialogue>();
 
         //starting active UI
+        _fishSprite.gameObject.SetActive(false);
         //_dialogueBox.gameObject.SetActive(true);
         _playerDialogueScript.optionsBox.gameObject.SetActive(false);
 
@@ -139,6 +142,19 @@ public class DialogueController : MonoBehaviour
     /// <returns></returns>
     IEnumerator TypeLine()
     {
+        if (!_showFish)
+        {
+            _fishSprite.gameObject.SetActive(false);
+        }
+
+        if (_showFish)
+        {
+            _fishSprite.gameObject.SetActive(true);
+            _fishSprite.texture = datingFish.sprite.texture;
+            _showFish = false;
+        }
+
+
         SpriteSelector();
         if (!dialogueLines[_index].player)
         {
@@ -213,6 +229,7 @@ public class DialogueController : MonoBehaviour
 
         if (fishTime)
         {
+            _showFish = true;
             Debug.Log("FishTime");
             _index++;
             _textLover.text = string.Empty;
@@ -347,7 +364,7 @@ public class DialogueController : MonoBehaviour
             introText.text += c;
             yield return new WaitForSeconds(_typeSpeed * 2);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         _dateStartImage.gameObject.SetActive(false);
         _dialogueBox.gameObject.SetActive(true);
         StartCoroutine(TypeLine());
